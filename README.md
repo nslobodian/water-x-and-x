@@ -88,6 +88,12 @@ Explain your code style and show how to check it.
 If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
 
 
+## Troubleshooting
+For multiple git keys and accounts use 
+```
+git config --add --local core.sshCommand 'ssh -i <<<PATH_TO_SSH_KEY>>>'
+```
+
 ## Database
 
 Explaining what database (and version) has been used. Provide download links.
