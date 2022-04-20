@@ -1,6 +1,8 @@
 FROM node:16-alpine
 
-WORKDIR /urs/app
+ARG APP_DIR=/application
+
+WORKDIR $APP_DIR
 
 COPY package*.json ./
 

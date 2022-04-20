@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  api:
+    volumes:
+      - .:/application
+      - /application/node_modules
+    ports:
+      - 8080:80
+    entrypoint: [ 'npm', 'run', 'start:dev' ]
+    networks:
+      - network
+
+networks:
+  network:
+    name: water-x-and-x-network
