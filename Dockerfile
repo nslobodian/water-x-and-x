@@ -1,17 +1,16 @@
+FROM node:18-alpine AS BASEIMAGE
+
+WORKDIR /src
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run prebuild && npm run build && npm prune --production
+
 FROM node:18-alpine
 
-ARG APP_DIR=/application
+WORKDIR /src
+COPY --from=BASEIMAGE /src/dist /src/dist
+COPY --from=BASEIMAGE /src/node_modules /src/node_modules
+EXPOSE 3000
 
-WORKDIR $APP_DIR
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-EXPOSE 8080
-
-RUN npm run build
-
-ENTRYPOINT ["npm", "run", "start:prod"]
+CMD ["node", "dist/main.js"]
