@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: water-a-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: water-a-api
@@ -32,8 +32,8 @@ spec:
         app: water-a-api
     spec:
       containers:
-      - name: water-api
-        image: gcr.io/google-samples/hello-app:1.0
+      - name: water-a-api
+        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
         ports:
         - containerPort: 8080
         resources:

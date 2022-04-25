@@ -5,6 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: water-api
+    container_name: water-a-api
     env_file:
       - .env
