@@ -15,12 +15,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-api
+  name: water-a-api
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: water-api
+      app: water-a-api
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -29,15 +29,27 @@ spec:
   template:
     metadata:
       labels:
-        app: water-api
+        app: water-a-api
     spec:
       containers:
       - name: water-api
-        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
+        image: gcr.io/google-samples/hello-app:1.0
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
         resources:
           requests:
             cpu: 100m
           limits:
             cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: water-a-api-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: water-a-api
