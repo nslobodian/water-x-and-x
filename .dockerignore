@@ -9,8 +9,8 @@ coverage/
 test/
 /dist
 /docs
-docker-compose.yml
-Dockerfile
+docker-compose*
+Dockerfile*
 .dockerignore
 .gitignore
 .cache
