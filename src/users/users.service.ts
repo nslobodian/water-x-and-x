@@ -1,23 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common'
 
-export type User = any;
+import UserPostgresRepository from '@app/users/adapters/user-postgres.repository'
+import UserRepositoryInterface from '@app/users/adapters/user-repository.interface'
+
+import { UserEntity } from './entity/user.entity'
 
 @Injectable()
-export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'John Marston',
-      password: 'rdr1',
-    },
-    {
-      userId: 2,
-      username: 'Arthur Morgan',
-      password: 'rdr2',
-    },
-  ];
+export default class UsersService {
+  constructor(
+    @Inject(UserPostgresRepository)
+    private userRepository: UserRepositoryInterface
+  ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async findOneByUsername(username: string): Promise<UserEntity | undefined> {
+    const users = await this.userRepository.findByQuery({ username })
+
+    return users[0]
   }
 }

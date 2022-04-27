@@ -1,23 +1,21 @@
-# backend/Dockerfile =================
-# (production-friendly)
 
 FROM node:18-alpine
 
-WORKDIR /usr/src/app
+ARG APP_DIR=/application
 
-# Copy these files from your host into the image
-COPY yarn.lock .
-COPY package.json .
+WORKDIR $APP_DIR
 
-# Run the command inside the image filesystem
-RUN yarn --prod --frozen-lockfile
 
-# Copy the rest of your app's source code from your host to the image filesystem:
+COPY package*.json ./ yarn.lock ./
+
+RUN yarn install
+
 COPY . .
 
-# Which port is the container listening on at runtime?
-# This should be the same port your server is listening to:
+ENV NODE_PATH=./build
+
 EXPOSE 3000
 
-# Start the server within the container:
-CMD [ "yarn", "start" ]
+RUN yarn build
+
+ENTRYPOINT ["yarn", "start:prod"]

@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: water-a-api
+    depends_on:
+      - db
     env_file:
       - .env
   
