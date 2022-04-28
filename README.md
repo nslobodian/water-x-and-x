@@ -9,12 +9,18 @@ A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
 ```shell
-commands here
+cp docker-compose.override.yml.example docker-compose.override.yml
+cp .env.example .env
 ```
 
 Here you should say what actually happens when you execute the code above.
 
 ## Developing
+
+```shell
+docker-compose up dev
+docker-compose up prod
+```
 
 ### Built With
 List main libraries, frameworks used including versions (React, Angular etc...)

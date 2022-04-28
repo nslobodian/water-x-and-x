@@ -1,21 +1,28 @@
+FROM node:18-alpine AS development
 
-FROM node:18-alpine
+WORKDIR /usr/src/app
 
-ARG APP_DIR=/application
+COPY package*.json ./
 
-WORKDIR $APP_DIR
-
-
-COPY package*.json ./ yarn.lock ./
-
-RUN yarn install
+RUN npm install --only=development
 
 COPY . .
 
-ENV NODE_PATH=./build
+RUN npm run build
 
-EXPOSE 3000
+FROM node:18-alpine as production
 
-RUN yarn build
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
-ENTRYPOINT ["yarn", "start:prod"]
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]

@@ -1,16 +1,49 @@
 version: '3.7'
 
 services:
-  api:
-    volumes:
-      - .:/application
-      - /application/node_modules
+
+  dev:
+    command: npm run start:debug
     ports:
-      - 8080:80
-    entrypoint: [ 'npm', 'run', 'start:dev' ]
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+  prod:
+    command: npm run start:prod
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+  db:
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: water
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/data/postgres
+    restart: unless-stopped
     networks:
       - network
 
 networks:
   network:
     name: water-x-and-x-network
+    driver: bridge
+
+volumes:
+    postgres:
