@@ -11,15 +11,15 @@ services:
     depends_on:
       - db
 
-  prod:
-    container_name: water_api_prod
-    image: water-api-prod:1.0.0
-    build:
-      context: .
-      target: production
-      dockerfile: ./Dockerfile
-    depends_on:
-      - db
+  # prod:
+  #   container_name: water_api_prod
+  #   image: water-api-prod:1.0.0
+  #   build:
+  #     context: .
+  #     target: production
+  #     dockerfile: ./Dockerfile
+  #   depends_on:
+  #     - db
 
   db:
     container_name: water-db

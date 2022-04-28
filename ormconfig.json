@@ -1,5 +1,5 @@
 {
-    "name": "development",
+    "name": "default",
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
@@ -9,15 +9,12 @@
     "synchronize": false,
     "logging": true,
     "entities": [
-        "src/**/*.entity.ts",
         "dist/**/*.entity.js"
     ],
     "migrations": [
-        "src/migration/**/*.ts",
         "dist/migration/**/*.js"
     ],
     "subscribers": [
-        "src/subscriber/**/*.ts",
         "dist/subscriber/**/*.js"
     ],
     "cli": {

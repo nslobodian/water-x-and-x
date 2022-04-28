@@ -22,6 +22,12 @@ docker-compose up dev
 docker-compose up prod
 ```
 
+
+## Migrations
+```shell
+docker-compose up dev
+npm run migration:up
+```
 ### Built With
 List main libraries, frameworks used including versions (React, Angular etc...)
 
