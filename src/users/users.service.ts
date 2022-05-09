@@ -4,12 +4,14 @@ import UserPostgresRepository from '@app/users/adapters/user-postgres.repository
 import UserRepositoryInterface from '@app/users/adapters/user-repository.interface'
 import { UserEntity } from '@app/users/entity/user.entity'
 import { SignupUserDto } from '@app/users/dto/signup-user.dto'
+import UsersNotificationService from '@app/users/notification/users-notification.service'
 
 @Injectable()
 export default class UsersService {
   constructor(
     @Inject(UserPostgresRepository)
-    private userRepository: UserRepositoryInterface
+    private userRepository: UserRepositoryInterface,
+    private usersNotificationService: UsersNotificationService
   ) {}
 
   async findOneByUsername(username: string): Promise<UserEntity | undefined> {
@@ -31,7 +33,7 @@ export default class UsersService {
 
     const user = await this.userRepository.create(userEntity)
 
-    // TODO: notify topic
+    await this.usersNotificationService.userSignedUp(user.id)
 
     return user
   }

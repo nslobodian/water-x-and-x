@@ -9,7 +9,7 @@
 
 28.04.2022
 - [X] Signup user
-- [ ] Post signup message into topic
+- [X] Post signup message into topic
 
 
 28.04.2022
