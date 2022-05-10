@@ -18,5 +18,5 @@
 - [ ] Read from signup topic
 
 10.05.2022
-- [ ] Room module
+- [X] Room module
 - [ ] GraphQL adapter
