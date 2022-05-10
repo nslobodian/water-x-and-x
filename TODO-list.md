@@ -13,6 +13,10 @@
 
 
 28.04.2022
-- [ ] Create rest module for interaction
-- [ ] Split rest EP into usercase and one per file
+- [X] Create rest module for interaction
+- [X] Split rest EP into usercase and one per file
 - [ ] Read from signup topic
+
+10.05.2022
+- [ ] Room module
+- [ ] GraphQL adapter

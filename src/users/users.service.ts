@@ -1,40 +1,19 @@
-import { Inject, Injectable, UnprocessableEntityException } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
 
 import UserPostgresRepository from '@app/users/adapters/user-postgres.repository'
 import UserRepositoryInterface from '@app/users/adapters/user-repository.interface'
 import { UserEntity } from '@app/users/entity/user.entity'
-import { SignupUserDto } from '@app/users/dto/signup-user.dto'
-import UsersNotificationService from '@app/users/notification/users-notification.service'
 
 @Injectable()
 export default class UsersService {
   constructor(
     @Inject(UserPostgresRepository)
-    private userRepository: UserRepositoryInterface,
-    private usersNotificationService: UsersNotificationService
+    private userRepository: UserRepositoryInterface
   ) {}
 
   async findOneByUsername(username: string): Promise<UserEntity | undefined> {
     const users = await this.userRepository.findByQuery({ username })
 
     return users[0]
-  }
-
-  async signupUser(userDto: SignupUserDto): Promise<UserEntity | undefined> {
-    const existingUser = await this.findOneByUsername(userDto.username)
-
-    if (existingUser) {
-      throw new UnprocessableEntityException('User already exists')
-    }
-
-    const userEntity = new UserEntity()
-    userEntity.password = userDto.password
-    userEntity.username = userDto.username
-
-    const user = await this.userRepository.create(userEntity)
-
-    await this.usersNotificationService.userSignedUp(user.id)
-
-    return user
   }
 }

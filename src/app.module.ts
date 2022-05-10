@@ -7,6 +7,7 @@ import { AppService } from '@app/app.service'
 import { AuthModule } from '@app/auth/auth.module'
 import { UsersModule } from '@app/users/users.module'
 import { NotificationModule } from '@app/notification/notification.module'
+import { RestModule } from '@app/rest/rest.module'
 import TypeOrmConfigService from '@app/config/postgres.config'
 
 @Module({
@@ -17,7 +18,8 @@ import TypeOrmConfigService from '@app/config/postgres.config'
     }),
     AuthModule,
     UsersModule,
-    NotificationModule
+    NotificationModule,
+    RestModule
   ],
   controllers: [AppController],
   providers: [AppService]

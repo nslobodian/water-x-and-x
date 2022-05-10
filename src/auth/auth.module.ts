@@ -4,10 +4,11 @@ import { PassportModule } from '@nestjs/passport'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 
 import { UsersModule } from '@app/users/users.module'
-import { AuthService } from '@app/auth/auth.service'
+import AuthService from '@app/auth/auth.service'
 import { LocalStrategy } from '@app/auth/strategy/local.strategy'
 import { JwtStrategy } from '@app/auth/strategy/jwt.strategy'
 import JwtConfig from '@app/config/jwt.config'
+import AuthLoginWithCredentials from '@app/auth/usecase/auth-login-with-credentials.usecase'
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import JwtConfig from '@app/config/jwt.config'
       inject: [ConfigService]
     })
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService]
+  providers: [AuthService, LocalStrategy, JwtStrategy, AuthLoginWithCredentials],
+  exports: [AuthLoginWithCredentials]
 })
 export class AuthModule {}
