@@ -8,7 +8,8 @@ import { AuthModule } from '@app/auth/auth.module'
 import { UsersModule } from '@app/users/users.module'
 import { NotificationModule } from '@app/notification/notification.module'
 import { RestModule } from '@app/rest/rest.module'
-import { RoomModule } from './room/room.module';
+import { RoomModule } from '@app/room/room.module'
+import { GraphqlModule } from '@app/graphql/graphql.module'
 import TypeOrmConfigService from '@app/config/postgres.config'
 
 @Module({
@@ -21,7 +22,8 @@ import TypeOrmConfigService from '@app/config/postgres.config'
     UsersModule,
     NotificationModule,
     RestModule,
-    RoomModule
+    RoomModule,
+    GraphqlModule
   ],
   controllers: [AppController],
   providers: [AppService]

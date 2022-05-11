@@ -15,4 +15,7 @@ export default class RoomEntity {
 
   @Column({ type: 'varchar' })
   description: string
+
+  @Column({ type: 'varchar' })
+  hostId: string
 }

@@ -19,4 +19,4 @@
 
 10.05.2022
 - [X] Room module
-- [ ] GraphQL adapter
+- [X] GraphQL adapter
