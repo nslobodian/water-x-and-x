@@ -100,7 +100,7 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@notification/notification(|/.*)$": "<rootDir>/libs/notification/src/$1"
+      "^@lib/notification(|/.*)$": "<rootDir>/libs/notification/src/$1"
     }
   }
 }

@@ -1,10 +1,13 @@
-import { Module } from '@nestjs/common';
-import { NotificationConsumerController } from './notification-consumer.controller';
-import { NotificationConsumerService } from './notification-consumer.service';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+
+import { NotificationConsumerController } from './notification-consumer.controller'
+import NotificationConsumerService from './notification-consumer.service'
+import pubsubConfig from './pubsub.config'
 
 @Module({
-  imports: [],
+  imports: [ConfigModule.forFeature(pubsubConfig)],
   controllers: [NotificationConsumerController],
-  providers: [NotificationConsumerService],
+  providers: [NotificationConsumerService]
 })
 export class NotificationConsumerModule {}
