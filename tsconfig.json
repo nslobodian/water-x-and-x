@@ -20,13 +20,19 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@app/*": [
-        "src/*"
+        "src/apps/api/src/*"
       ],
       "@shared/*": [
-        "src/shared/*"
+        "src/apps/api/src/shared/*"
       ],
       "@test/*": [
-        "test/shared*"
+        "test/apps/api/shared*"
+      ],
+      "@lib/notification": [
+        "libs/notification/src"
+      ],
+      "@lib/notification/*": [
+        "libs/notification/src/*"
       ]
     }
   },
