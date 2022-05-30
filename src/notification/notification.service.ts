@@ -1,7 +1,7 @@
 import { PubSub } from '@google-cloud/pubsub'
 import { Inject, Injectable } from '@nestjs/common'
 import { ConfigType } from '@nestjs/config'
-import MessageInterface from '@shared/message.interface'
+import { MessageInterface } from 'water-common'
 
 import PubSubConfig from '@app/config/pubsub.config'
 

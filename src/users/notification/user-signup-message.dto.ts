@@ -1,4 +1,4 @@
-import MessageInterface from '@shared/message.interface'
+import { MessageInterface } from 'water-common'
 
 export class UserSingupMessage implements MessageInterface {
   type: string
