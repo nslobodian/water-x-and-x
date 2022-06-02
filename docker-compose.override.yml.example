@@ -40,6 +40,21 @@ services:
     networks:
       - network
 
+  elasticsearch:
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    logging:
+      driver: none
+    ports:
+      - 9300:9300
+      - 9200:9200
+    networks: 
+      - network
+
 networks:
   network:
     name: water-x-and-x-network
@@ -47,3 +62,4 @@ networks:
 
 volumes:
     postgres:
+    esdata:
