@@ -51,7 +51,7 @@ jobs:
 
     # Get the GKE credentials so we can deploy to the cluster
     - name: Auth GKE in gcloud
-      uses: google-github-actions/get-gke-credentials@fb08709ba27618c31c09e014e1d8364b02e5042e
+      uses: google-github-actions/get-gke-credentials@ef10cc0013c465a6ea0b8e36c24064576ec25f87
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
